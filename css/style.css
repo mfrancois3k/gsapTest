@@ -14,9 +14,11 @@ body {
   }
 
   h2 {
-    text-align: center;
+    /* text-align: center; */
     letter-spacing: 5px;
-    display: block;
+    /* display: block; */
+    padding-right: 120px;
+    font-weight: bold;
   }
   
   .progress {

@@ -54,101 +54,39 @@
     }, '=-2.7');
 
 
-    // function loadingAnimation() {
-    //     h2.textContent = ""; // clear current text content
-      
-    //     letters.forEach((letter, index) => {
-    //       // substitute previous letters with span with class
-    //       h2.innerHTML += `<span class="letter" data-index="${index}">${letter}</span>`;
-    //     });
-      
-    //     // add inline block to make them movable
-    //     gsap.set(".letter", { display: "inline-block" });
-      
-    //     // Create a timeline for the animation
-    //     const removeLetters = gsap.timeline({
-    //       onComplete: () => {
-    //         // Check if there are more than 1 letter
-    //         const letterElements = document.querySelectorAll(".letter");
-    //         if (letterElements.length > 0) {
-    //           // Add animation to move each letter upwards
-    //           gsap.to(letterElements, {
-    //             y: -50,
-    //             opacity: 0,
-    //             duration: 0.5,
-    //             // stagger: 0.1,
-    //             onComplete: () => {
-    //               // Remove two letters at a time (one from each end)
-    //               letterElements[0].remove();
-    //               letterElements[letterElements.length - 1].remove();
-      
-    //               // Restart the timeline for the next iteration
-    //               removeLetters.restart();
-    //             },
-    //           });
-    //         } 
-    //       },
-    //       defaults: { ease: "power1.inOut" },
-    //     });
-    //   }
-      
-
-
     function loadingAnimation() {
-
-          h2.textContent = ""; // clear current text content
-        
-          letters.forEach((letter, index) => {
-        
-            // substitute previous letters with span with class
-        
-            h2.innerHTML += `<span class="letter" data-index="${index}">${letter}</span>`;
-        
-          });
-        
-          // add inline block to make them movable
-        
-          // just block would put them vertically
-        
-          gsap.set(".letter", { display: "inline-block" });
-        
-        const removeLetters = gsap.timeline({
-        
-          onComplete: () => {
-        
-         // Check if there are more than 2 letters
-            
-            if (document.querySelectorAll(".letter").length > 0) {
-        
-              // Remove two letters at a time (one from each end)
-        
-              document.querySelector(".letter:first-child").remove();
-        
-              document.querySelector(".letter:last-child").remove();
-        
-          
-        
-              // Restart the timeline for the next iteration
-        
-              removeLetters.restart();
-        
-            }
-        
-          },
-        
-          defaults: { ease: "power1.inOut" },
-        
+        h2.textContent = ""; // clear current text content
+      
+        letters.forEach((letter, index) => {
+          // substitute previous letters with span with class
+          h2.innerHTML += `<span class="letter" data-index="${index}">${letter}</span>`;
         });
-        
-          
-        
-        // animate removing two characters from each end
-        
-        removeLetters.to(".letter:first-child, .letter:last-child", { 
-            y: -50,
-            opacity: 0,
-            duration: 0.5,
-             stagger: 0.1
-             });
-        
-        }
+      
+        // add inline block to make them movable
+        gsap.set(".letter", { display: "inline-block" });
+      
+        // Create a timeline for the animation
+        const removeLetters = gsap.timeline({
+          onComplete: () => {
+            // Check if there are more than 1 letter
+            const letterElements = document.querySelectorAll(".letter");
+            if (letterElements.length > 0) {
+              // Add animation to move each letter upwards
+              gsap.to(letterElements, {
+                y: -50,
+                opacity: 0,
+                duration: 0.2,
+                // stagger: 0.1,
+                stagger: {
+                    amount: 1.8,
+                    grid: 'auto',
+                    from: 'edges'
+                },
+              });
+            } 
+          },
+          defaults: { ease: "power1.inOut" },
+        });
+      }
+      
+
